@@ -1,7 +1,3 @@
-"""
-Copyright (C) 2017 NVIDIA Corporation.  All rights reserved.
-Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
-"""
 from networks import MsImageDis,network1
 from utils import weights_init, get_model_list, vgg_preprocess, load_vgg16, get_scheduler
 from torch.autograd import Variable
@@ -13,12 +9,7 @@ import os
         super(MUNIT_Trainer, self).__init__()
         lr = hyperparameters['lr']
         # Initiate the networks
-        self.gen_a = network1(
-           in_chans=1,
-           out_chans=1,
-           chans=128,
-           num_pool_layers=4,
-           drop_prob=0.2,
+        self.gen_a = network1(1,1
         )
         self.dis_a = MsImageDis(hyperparameters['input_dim_a'], hyperparameters['dis'])  # discriminator for domain a
         self.instancenorm = nn.InstanceNorm2d(512, affine=False)
